@@ -114,3 +114,12 @@ def extract_comments_and_functions():
 
     # Convert the string to a dictionary of function comments
     create_pdf(code1)
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python -m azizdoc <path_to_python_file>")
+    else:
+        extract_comments_and_functions(sys.argv[1])
+
+if __name__ == "__main__":
+    main()
