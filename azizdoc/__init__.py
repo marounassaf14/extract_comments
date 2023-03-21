@@ -1,1 +1,1 @@
-from .azizdoc import main
+from . import main
