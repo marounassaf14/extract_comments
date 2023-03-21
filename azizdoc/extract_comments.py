@@ -109,6 +109,7 @@ def extract_comments_and_functions(cc):
             bullet_list.append(Spacer(1, 0.5 * inch))
 
         doc.build(bullet_list)
+        print("Your pdf has been generated.")
 
 
     # Get the filename argument from the command-line
