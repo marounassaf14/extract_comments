@@ -7,8 +7,8 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, ListFlowabl
 import re
 
 
-def extract_comments_and_functions(code):
-    def create_pdf():
+def extract_comments_and_functions():
+    def create_pdf(code):
         func_pattern = re.compile("def\s+(\w+)\s*\([^)]*\)\s*:")
         cmnt_pattern = re.compile("#.*?$|'''(.*?)'''", re.DOTALL | re.MULTILINE)
         functions = {}
