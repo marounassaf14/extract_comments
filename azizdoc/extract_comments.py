@@ -11,7 +11,9 @@ def main():
         print("Usage: python -m azizdoc <path_to_python_file>")
     else:
         extract_comments_and_functions(sys.argv[1])
-def extract_comments_and_functions():
+def extract_comments_and_functions(cc):
+    with open(cc, 'r') as f:
+        code = f.read()
     def create_pdf(code):
         func_pattern = re.compile("def\s+(\w+)\s*\([^)]*\)\s*:")
         cmnt_pattern = re.compile("#.*?$|'''(.*?)'''", re.DOTALL | re.MULTILINE)
