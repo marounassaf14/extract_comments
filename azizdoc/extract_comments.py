@@ -18,6 +18,7 @@ def extract_comments_and_functions(cc):
     def create_pdf(code):
         func_pattern = re.compile("def\s+(\w+)\s*\([^)]*\)\s*:")
         cmnt_pattern = re.compile(r"#.*?$|'''(.*?)'''|\"\"\"(.*?)\"\"\"", re.DOTALL | re.MULTILINE)
+
         functions = {}
         miscellaneous = []
 
