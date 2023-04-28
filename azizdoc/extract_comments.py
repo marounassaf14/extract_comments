@@ -11,12 +11,13 @@ def main():
         print("Usage: python -m azizdoc <path_to_python_file>")
     else:
         extract_comments_and_functions(sys.argv[1])
+
 def extract_comments_and_functions(cc):
     with open(cc, 'r') as f:
         code = f.read()
     def create_pdf(code):
         func_pattern = re.compile("def\s+(\w+)\s*\([^)]*\)\s*:")
-        cmnt_pattern = re.compile("#.*?$|'''(.*?)'''", re.DOTALL | re.MULTILINE)
+        cmnt_pattern = re.compile(r"#.*?$|'''(.*?)'''|\"\"\"(.*?)\"\"\"", re.DOTALL | re.MULTILINE)
         functions = {}
         miscellaneous = []
 
@@ -52,7 +53,6 @@ def extract_comments_and_functions(cc):
                     miscellaneous.append(match.group(0).strip())
                 elif match.group(0).startswith("'''"):
                     miscellaneous.append(match.group(1).strip())
-            last_func_end = code.find("\n\n", match.end())
 
         # Add the miscellaneous comments to the dictionary
         if miscellaneous:
@@ -126,3 +126,22 @@ def extract_comments_and_functions(cc):
 
 if __name__ == "__main__":
     main()
+
+
+
+'''class Person():
+    def __int__(self,name):
+        self.name = name
+        #this is the initialization function
+    
+    #this is a class function
+    
+    def nom(self):
+        return(self.name)'''
+
+
+
+
+
+
+
