@@ -63,17 +63,15 @@ def extract_comments_and_functions(cc):
 
         for key, comments in functions.items():
             for comment in comments:
-                cleaned_comments = ""
-                if comment == "#":
+                if comment.startswith("#"):
                     cleaned_comments = [comment.replace("#", "").strip() for comment in comments]
                     break
-                elif comment == "'":
+                elif comment.startswith("'"):
                     cleaned_comments = [comment.replace("'", "").strip() for comment in comments]
                     break
                 else:
                     cleaned_comments = [comment.replace("\"", "").strip() for comment in comments]
                     break
-
             cleaned_dict[key] = "".join(cleaned_comments)
 
 
