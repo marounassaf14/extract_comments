@@ -63,17 +63,20 @@ def extract_comments_and_functions(cc):
             functions["miscellaneous"] = miscellaneous
 
         cleaned_dict = {}
-
+        cleaned_list =[]
         for key, comments in functions.items():
+            cleaned_list = []
             for comment in comments:
                 if comment.startswith("#"):
-                    cleaned_comments = [comment.strip("#") for comment in comments]
+                    cleaned_comments = comment.strip("#")
                 elif comment.startswith("'''"):
-                    cleaned_comments = [comment.replace("'''", "").strip() for comment in comments]
+                    cleaned_comments = comment.strip("'''")
                 else:
-                    cleaned_comments = [comment.replace("\"\"\"", "").strip() for comment in comments]
+                    cleaned_comments = comment.strip("\"\"\"")
 
-            cleaned_dict[key] = cleaned_comments
+                cleaned_list.append(cleaned_comments)
+
+            cleaned_dict[key] = cleaned_list
 
 
 
