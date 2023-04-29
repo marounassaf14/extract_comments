@@ -37,6 +37,9 @@ def extract_comments_and_functions(cc):
                     func_comments.append(cmnt_match.group(0).strip())
                 elif cmnt_match.group(0).startswith("'''") and cmnt_indentation > func_indentation:
                     func_comments.append(cmnt_match.group(0).strip())
+                elif cmnt_match.group(0).startswith("\"\"\"") and cmnt_indentation > func_indentation:
+                    func_comments.append(cmnt_match.group(0).strip())
+
             functions[func_name] = func_comments
 
         # Find all miscellaneous comments
@@ -65,13 +68,13 @@ def extract_comments_and_functions(cc):
             for comment in comments:
                 if comment.startswith("#"):
                     cleaned_comments = [comment.replace("#", "").strip() for comment in comments]
-                    break
+
                 elif comment.startswith("'''"):
                     cleaned_comments = comment.strip("'''")
-                    break
+
                 else:
                     cleaned_comments = [comment.replace("\"\"\"", "").strip() for comment in comments]
-                    break
+
             cleaned_dict[key] = cleaned_comments
 
 
