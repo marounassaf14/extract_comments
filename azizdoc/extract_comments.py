@@ -125,15 +125,15 @@ def extract_comments_and_functions(cc):
         print("Your pdf has been generated.")
 
 
-        # Get the filename argument from the command-line
-        filename = sys.argv[1]
+# Get the filename argument from the command-line
+filename = sys.argv[1]
 
-        # Read the contents of the file into a string
-        with open(filename, 'r') as f:
-            code = f.read()
+# Read the contents of the file into a string
+with open(filename, 'r') as f:
+    code = f.read()
 
-        # Convert the string to a dictionary of function comments
-        extract_comments_and_functions(code)
+# Convert the string to a dictionary of function comments
+extract_comments_and_functions(code)
 
 
 
@@ -141,16 +141,6 @@ if __name__ == "__main__":
     main()
 
 
-
-'''class Person():
-    def __int__(self,name):
-        self.name = name
-        #this is the initialization function
-    
-    #this is a class function
-    
-    def nom(self):
-        return(self.name)'''
 
 
 
