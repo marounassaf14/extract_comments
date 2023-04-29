@@ -60,9 +60,15 @@ def extract_comments_and_functions(cc):
             functions["miscellaneous"] = miscellaneous
 
         cleaned_dict = {}
-        for key,comments in functions.items():
-            cleaned_comments = [comment.replace("#", "").strip() for comment in comments]
-            cleaned_dict[key] = cleaned_comments
+        for key, comments in functions.items():
+            for comment in comments:
+                if comment == "#":
+                    cleaned_comments = [comment.replace("#", "").strip() for comment in comments]
+                    break
+                elif comment == "'":
+                    cleaned_comments = [comment.replace("'", "").strip() for comment in comments]
+                    break
+            cleaned_dict[key] = "".join(cleaned_comments)
 
 
 
