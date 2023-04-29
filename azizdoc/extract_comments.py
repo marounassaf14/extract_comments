@@ -60,6 +60,7 @@ def extract_comments_and_functions(cc):
             functions["miscellaneous"] = miscellaneous
 
         cleaned_dict = {}
+        cleaned_comments = ""
         for key, comments in functions.items():
             for comment in comments:
                 if comment == "#":
