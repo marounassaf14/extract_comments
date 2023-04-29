@@ -66,7 +66,7 @@ def extract_comments_and_functions(cc):
                 if comment.startswith("#"):
                     cleaned_comments = [comment.replace("#", "").strip() for comment in comments]
                     break
-                elif comment.startswith("'''"):
+                elif comment.startswith("T"):
                     cleaned_comments = [comment.replace("'''", "").strip() for comment in comments]
                     break
                 else:
