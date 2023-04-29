@@ -13,6 +13,8 @@ def main():
         extract_comments_and_functions(sys.argv[1])
 
 def extract_comments_and_functions(cc):
+        with open(cc,"r") as f:
+            cc = f.read()
 
         func_pattern = re.compile("def\s+(\w+)\s*\([^)]*\)\s*:")
         cmnt_pattern = re.compile(r"#.*?$|'''(.*?)'''|\"\"\"(.*?)\"\"\"", re.DOTALL | re.MULTILINE)
