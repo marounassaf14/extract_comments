@@ -72,7 +72,7 @@ def extract_comments_and_functions(cc):
                 else:
                     cleaned_comments = [comment.replace("\"", "").strip() for comment in comments]
                     break
-            cleaned_dict[key] = "".join(cleaned_comments)
+            cleaned_dict[key] = cleaned_comments
 
 
 
