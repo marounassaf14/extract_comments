@@ -13,9 +13,7 @@ def main():
         extract_comments_and_functions(sys.argv[1])
 
 def extract_comments_and_functions(cc):
-    with open(cc, 'r') as f:
-        code = f.read()
-    def create_pdf(code):
+
         func_pattern = re.compile("def\s+(\w+)\s*\([^)]*\)\s*:")
         cmnt_pattern = re.compile(r"#.*?$|'''(.*?)'''|\"\"\"(.*?)\"\"\"", re.DOTALL | re.MULTILINE)
 
@@ -23,14 +21,14 @@ def extract_comments_and_functions(cc):
         miscellaneous = []
 
         # Find all function blocks and their associated comments
-        for match in func_pattern.finditer(code):
+        for match in func_pattern.finditer(cc):
             func_name = match.group(1)
-            func_code = code[match.start():]
+            func_code = cc[match.start():]
             next_func_match = func_pattern.search(func_code[1:])
             func_code_end = len(func_code) if next_func_match is None else next_func_match.start() + 1
             func_code = func_code[:func_code_end]
             func_comments = []
-            func_indentation = match.start() - code.rfind("\n", 0, match.start()) - 1
+            func_indentation = match.start() - cc.rfind("\n", 0, match.start()) - 1
             for cmnt_match in cmnt_pattern.finditer(func_code):
                 cmnt_indentation = cmnt_match.start() - func_code.rfind("\n", 0, cmnt_match.start()) - 1
                 if cmnt_match.group(0).startswith("#") and cmnt_indentation > func_indentation:
@@ -44,7 +42,7 @@ def extract_comments_and_functions(cc):
 
         # Find all miscellaneous comments
         last_func_end = 0
-        for match in cmnt_pattern.finditer(code):
+        for match in cmnt_pattern.finditer(cc):
             if match.start() < last_func_end:
                 continue
             is_miscellaneous = True
@@ -127,15 +125,15 @@ def extract_comments_and_functions(cc):
         print("Your pdf has been generated.")
 
 
-    # Get the filename argument from the command-line
-    filename = sys.argv[1]
+        # Get the filename argument from the command-line
+        filename = sys.argv[1]
 
-    # Read the contents of the file into a string
-    with open(filename, 'r') as f:
-        code1 = f.read()
+        # Read the contents of the file into a string
+        with open(filename, 'r') as f:
+            code = f.read()
 
-    # Convert the string to a dictionary of function comments
-    create_pdf(code1)
+        # Convert the string to a dictionary of function comments
+        extract_comments_and_functions(code)
 
 
 
