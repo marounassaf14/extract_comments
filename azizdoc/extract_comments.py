@@ -57,6 +57,8 @@ def extract_comments_and_functions(cc):
                     miscellaneous.append(match.group(0).strip())
                 elif match.group(0).startswith("'''"):
                     miscellaneous.append(match.group(1).strip())
+                else:
+                    miscellaneous.append(match.group(1).strip())
 
         # Add the miscellaneous comments to the dictionary
         if miscellaneous:
